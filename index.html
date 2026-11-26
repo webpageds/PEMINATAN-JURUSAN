@@ -30,7 +30,7 @@ h2{font-size:clamp(21px,3vw,28px);color:var(--navy);margin-bottom:12px}
 h3{font-size:17px;color:var(--navy);margin-bottom:8px}
 p{color:var(--muted);line-height:1.8;margin-bottom:15px}
 .divider{height:1px;background:var(--line);margin:30px 0}
-#countdownBox{max-width:720px;margin:0 auto;padding:32px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#f8fbff,#edf4fc);text-align:center}
+#countdownBox{display:block!important;min-height:150px;max-width:720px;margin:0 auto;padding:32px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#f8fbff,#edf4fc);text-align:center}
 #countdownBox h1{font-size:clamp(25px,4vw,36px)}
 #countdownBox p{margin-top:12px}
 #countdown{font-size:clamp(26px,5vw,42px);font-weight:800;color:var(--blue);margin-top:16px;line-height:1.45;font-variant-numeric:tabular-nums}
@@ -273,6 +273,8 @@ const tutupPortal=new Date("2027-06-26T22:00:00+07:00").getTime();
 function updateCountdown(){
   const now=Date.now();
   if(now<bukaPortal){
+    document.getElementById("countdownBox").style.display="block";
+    document.getElementById("login").style.display="none";
     const selisih=bukaPortal-now;
     const hari=Math.floor(selisih/86400000);
     const jam=Math.floor((selisih%86400000)/3600000);
