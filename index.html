@@ -100,10 +100,12 @@ textarea{resize:vertical;min-height:110px}
     <div id="countdown">Memuat waktu...</div>
   </div>
   <section id="login" class="login-panel" style="display:none">
-    <div class="login-heading"><div class="eyebrow">Selamat Datang</div><h2>Masuk Portal Mahasiswa</h2><p>Gunakan nama lengkap dan NIM untuk melanjutkan proses pemilihan peminatan.</p></div>
-    <div class="field"><label for="nama">Nama lengkap</label><input type="text" id="nama" placeholder="Masukkan nama lengkap" autocomplete="name"></div>
-    <div class="field"><label for="nim">Nomor Induk Mahasiswa (NIM)</label><input type="text" id="nim" placeholder="Masukkan NIM" inputmode="numeric"></div>
-    <button class="btn" onclick="login()">Masuk ke Portal <span>→</span></button>
+    <form id="loginForm" onsubmit="event.preventDefault(); login();">
+      <div class="login-heading"><div class="eyebrow">Selamat Datang</div><h2>Masuk Portal Mahasiswa</h2><p>Gunakan nama lengkap dan NIM untuk melanjutkan proses pemilihan peminatan.</p></div>
+      <div class="field"><label for="nama">Nama lengkap</label><input type="text" id="nama" placeholder="Masukkan nama lengkap" autocomplete="name" required></div>
+      <div class="field"><label for="nim">Nomor Induk Mahasiswa (NIM)</label><input type="text" id="nim" placeholder="Masukkan NIM" inputmode="numeric" autocomplete="username" required></div>
+      <button class="btn" type="submit">Masuk ke Portal</button>
+    </form>
   </section>
   <section id="page2">
     <div class="welcome"><div class="eyebrow" style="text-align:left;color:#b9d4f4">Portal Peminatan KBK</div><h2 id="welcome"></h2><p>Pelajari setiap bidang peminatan dan daftar dosen Kelompok Bidang Keilmuan sebelum mengisi formulir.</p></div>
@@ -129,7 +131,7 @@ textarea{resize:vertical;min-height:110px}
     </div>
     <div class="divider"></div>
     <label class="consent"><input type="checkbox" id="setuju"><span>Saya telah membaca dan memahami informasi bidang peminatan serta daftar dosen KBK Akuntansi.</span></label>
-    <button class="btn" onclick="lanjut()">Lanjut ke Formulir <span>→</span></button>
+    <button class="btn" type="button" onclick="lanjut()">Lanjut ke Formulir</button>
   </section>
   <section id="page3">
     <div class="form-intro"><div class="eyebrow" style="text-align:left">Tahap Pengisian</div><h2>Formulir Peminatan</h2><p>Lengkapi data mahasiswa, nilai mata kuliah prasyarat, dan pilihan peminatan dengan benar.</p></div>
@@ -151,7 +153,7 @@ textarea{resize:vertical;min-height:110px}
       <div class="field full"><label for="alasanmemilih">Alasan memilih peminatan</label><textarea id="alasanmemilih" placeholder="Tuliskan alasan dan minat Anda memilih bidang peminatan tersebut..."></textarea></div>
     </div>
     <div class="divider"></div>
-    <button id="submitBtn" class="btn" onclick="kirimData()">Kirim Data Peminatan <span>→</span></button>
+    <button id="submitBtn" class="btn" type="button" onclick="kirimData()">Kirim Data Peminatan</button>
   </section>
   <section id="page4" class="success">
     <div class="success-icon">✓</div><div class="eyebrow">Pengiriman Berhasil</div><h1>Terima Kasih!</h1><p>Data peminatan Anda telah berhasil dikirim. Semoga proses akademik Anda berjalan lancar.</p><h2 style="margin-top:22px">Sukses untuk langkah berikutnya.</h2>
@@ -164,13 +166,19 @@ const API_URL = "https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHP
 function showPage(id){["login","page2","page3","page4"].forEach(page=>document.getElementById(page).style.display=page===id?"block":"none");}
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));}
 function login(){
-  const nama=document.getElementById("nama").value.trim();
-  const nim=document.getElementById("nim").value.trim();
-  if(!nama||!nim){alert("Nama dan NIM wajib diisi.");return;}
-  if(!/^\d+$/.test(nim)){alert("NIM harus berupa angka.");return;}
-  showPage("page2");
+  const namaInput=document.getElementById("nama");
+  const nimInput=document.getElementById("nim");
+  const nama=namaInput.value.trim();
+  const nim=nimInput.value.trim();
+  if(!nama){namaInput.focus();alert("Nama lengkap wajib diisi.");return false;}
+  if(!nim){nimInput.focus();alert("NIM wajib diisi.");return false;}
+  if(!/^\d+$/.test(nim)){nimInput.focus();alert("NIM harus berupa angka.");return false;}
+  window.namaMahasiswa=nama;
+  window.nimMahasiswa=nim;
   document.getElementById("welcome").textContent="Selamat datang, "+nama;
-  window.namaMahasiswa=nama;window.nimMahasiswa=nim;
+  showPage("page2");
+  document.getElementById("page2").scrollIntoView({behavior:"smooth",block:"start"});
+  return false;
 }
 function lanjut(){
   if(!document.getElementById("setuju").checked){alert("Silakan centang konfirmasi bahwa Anda telah membaca informasi.");return;}
@@ -226,7 +234,7 @@ async function loadKuota(){
     box.innerHTML="<h3>Informasi Kuota Peminatan</h3><p>Kuota belum dapat dimuat. Silakan muat ulang halaman atau coba kembali.</p>";
   }
 }
-function resetSubmitButton(btn){btn.disabled=false;btn.textContent="Kirim Data Peminatan →";}
+function resetSubmitButton(btn){btn.disabled=false;btn.textContent="Kirim Data Peminatan";}
 async function kirimData(){
   const btn=document.getElementById("submitBtn");
   if(btn.disabled)return;
