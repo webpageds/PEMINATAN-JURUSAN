@@ -3,827 +3,292 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Portal Peminatan Jurusan</title>
-
+<meta name="theme-color" content="#102d56">
+<meta name="description" content="Portal Peminatan Program Studi Akuntansi Universitas Pamulang PSDKU Serang">
+<title>Portal Peminatan | Akuntansi UNPAM Serang</title>
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
-
-body{
-background:#1565c0;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-padding:20px;
-}
-
-.container{
-background:white;
-width:100%;
-max-width:1000px;
-border-radius:20px;
-padding:50px;
-box-shadow:0 15px 40px rgba(0,0,0,0.2);
-text-align:center;
-}
-
-.logo{
-width:120px;
-margin-bottom:20px;
-}
-
-h1{
-color:#0d47a1;
-font-size:48px;
-margin-bottom:10px;
-}
-
-h2{
-color:#333;
-margin-bottom:25px;
-}
-
-p{
-color:#666;
-line-height:1.8;
-margin-bottom:15px;
-}
-
-hr{
-margin:30px 0;
-}
-
-.login-title{
-font-size:28px;
-font-weight:bold;
-color:#1565c0;
-margin-bottom:25px;
-}
-
-input{
-width:100%;
-padding:15px;
-border:1px solid #ccc;
-border-radius:10px;
-margin-bottom:15px;
-font-size:16px;
-}
-
-select{
-width:100%;
-padding:15px;
-border:1px solid #ccc;
-border-radius:10px;
-margin-bottom:15px;
-font-size:16px;
-background:white;
-}
-
-textarea{
-width:100%;
-padding:15px;
-border:1px solid #ccc;
-border-radius:10px;
-margin-bottom:15px;
-font-size:16px;
-resize:none;
-}
-
-button{
-width:100%;
-padding:15px;
-border:none;
-background:#1565c0;
-color:white;
-font-size:18px;
-font-weight:bold;
-border-radius:10px;
-cursor:pointer;
-}
-
-button:hover{
-background:#0d47a1;
-}
-
-#dashboard{
-display:none;
-text-align:left;
-}
-
-.card{
-background:#f7f9fc;
-padding:20px;
-border-radius:15px;
-margin-top:15px;
-border-left:6px solid #1565c0;
-}
-
-.card h3{
-margin-bottom:10px;
-color:#1565c0;
-}
-.dosen-box{
-background:#f7f9fc;
-padding:20px;
-border-radius:15px;
-margin-top:20px;
-text-align:left;
-}
-
-.dosen-box h3{
-color:#1565c0;
-margin-top:20px;
-margin-bottom:10px;
-}
-
-.dosen-box ul{
-list-style:none;
-padding-left:0;
-}
-
-.dosen-box li{
-padding:8px 0;
-border-bottom:1px solid #ddd;
-font-size:16px;
-}
-
-.dosen-box li:last-child{
-border-bottom:none;
-}
-.checkbox{
-margin-top:30px;
-font-size:18px;
-}
-
-.next-btn{
-margin-top:20px;
-}
-
-/* RESPONSIVE HP */
-@media (max-width:768px){
-
-.container{
-padding:25px;
-}
-
-.logo{
-width:80px;
-}
-
-h1{
-font-size:32px;
-line-height:1.2;
-}
-
-h2{
-font-size:20px;
-line-height:1.4;
-}
-
-.login-title{
-font-size:22px;
-}
-
-p{
-font-size:16px;
-line-height:1.6;
-}
-
-button{
-font-size:16px;
-padding:12px;
-}
-
-.card{
-padding:15px;
-}
-
-.dosen-box{
-padding:15px;
-}
-
-.dosen-box li{
-font-size:14px;
-}
-#countdownBox{
-padding:20px;
-}
-
-#countdown{
-font-size:28px;
-line-height:1.5;
-}
-}
-
-#countdownBox{
-text-align:center;
-padding:40px;
-}
-
-#countdown{
-font-size:40px;
-font-weight:bold;
-color:#1565c0;
-margin-top:20px;
-line-height:1.4;
-word-break:keep-all;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap');
+:root{--navy:#102d56;--blue:#1f5fae;--sky:#eaf2fc;--gold:#d6ad60;--ink:#17263b;--muted:#68778b;--line:#e5ebf2;--paper:#fff;--bg:#f3f6fa;--green:#16765a;--shadow:0 18px 55px rgba(20,47,82,.10)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:26px 18px;line-height:1.6}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.shell{width:min(1120px,100%);margin:auto;background:var(--paper);border:1px solid #e9eef5;border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.topbar{background:var(--navy);color:white;padding:18px 38px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:13px;min-width:0}
+.brand-mark{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.12);display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);font-size:22px}
+.brand-name{font-family:Manrope,sans-serif;font-weight:800;font-size:14px;letter-spacing:.04em;line-height:1.35}
+.brand-name span{display:block;color:#c9d8eb;font-size:11px;font-weight:500;letter-spacing:.12em;margin-top:3px}
+.top-tag{border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:7px 13px;font-size:11px;color:#e1eaf5;white-space:nowrap}
+.content{padding:44px clamp(20px,5vw,58px) 48px}
+.logo-wrap{display:flex;justify-content:center;margin-bottom:18px}
+.logo{width:82px;height:82px;object-fit:contain;border-radius:18px}
+.eyebrow{color:var(--blue);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;text-align:center;margin-bottom:10px}
+h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif;line-height:1.25}
+h1{font-size:clamp(28px,4vw,43px);color:var(--navy);text-align:center;letter-spacing:-.035em}
+h2{font-size:clamp(21px,3vw,28px);color:var(--navy);margin-bottom:12px}
+h3{font-size:17px;color:var(--navy);margin-bottom:8px}
+p{color:var(--muted);line-height:1.8;margin-bottom:15px}
+.divider{height:1px;background:var(--line);margin:30px 0}
+#countdownBox{max-width:720px;margin:0 auto;padding:32px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#f8fbff,#edf4fc);text-align:center}
+#countdownBox h1{font-size:clamp(25px,4vw,36px)}
+#countdownBox p{margin-top:12px}
+#countdown{font-size:clamp(26px,5vw,42px);font-weight:800;color:var(--blue);margin-top:16px;line-height:1.45;font-variant-numeric:tabular-nums}
+.login-panel{max-width:510px;margin:34px auto 0;padding:30px;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 10px 35px rgba(16,45,86,.06)}
+.login-heading{text-align:center;margin-bottom:22px}
+.login-heading h2{margin:0}
+.login-heading p{font-size:13px;margin-top:6px}
+.field{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:700;color:#34465d;margin-bottom:7px}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid #dce4ee;border-radius:11px;background:#fff;color:var(--ink);outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:#6d9dd7;box-shadow:0 0 0 4px rgba(31,95,174,.10)}
+input::placeholder,textarea::placeholder{color:#9aa7b7}
+textarea{resize:vertical;min-height:110px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border:0;border-radius:11px;background:var(--blue);color:white;font-size:14px;font-weight:800;transition:.2s;width:100%;box-shadow:0 7px 16px rgba(31,95,174,.18)}
+.btn:hover{background:var(--navy);transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.welcome{background:linear-gradient(120deg,var(--navy),#1d5797);border-radius:18px;padding:25px;color:white;margin-bottom:28px}
+.welcome h2{color:white;margin-bottom:8px}
+.welcome p{color:#d7e5f5;font-size:14px;margin-bottom:0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:25px 0 16px}
+.section-head p{font-size:13px;margin:0}
+.major-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.major-card{border:1px solid var(--line);border-radius:17px;padding:21px;background:#fff;transition:.2s;min-height:170px}
+.major-card:hover{transform:translateY(-3px);box-shadow:0 13px 30px rgba(16,45,86,.08);border-color:#c8d9ed}
+.major-icon{width:42px;height:42px;background:var(--sky);border-radius:12px;display:grid;place-items:center;font-size:21px;margin-bottom:14px}
+.major-card p{font-size:13px;margin:0}
+.dosen-box{margin-top:28px;padding:25px;border:1px solid var(--line);border-radius:18px;background:#f9fbfe}
+.dosen-box>h2{margin-bottom:18px}
+.dosen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dosen-group{background:white;border:1px solid var(--line);padding:17px;border-radius:13px}
+.dosen-group h3{font-size:14px;margin-bottom:10px}
+.dosen-box ul{list-style:none}
+.dosen-box li{padding:7px 0;border-bottom:1px solid #edf1f6;color:#536277;font-size:12px;line-height:1.5}
+.dosen-box li:last-child{border-bottom:0}
+.consent{display:flex;align-items:flex-start;gap:11px;margin:22px 0;color:#536277;font-size:13px}
+.consent input{width:17px;height:17px;margin-top:2px;accent-color:var(--blue);flex:0 0 auto}
+.form-intro{margin-bottom:24px}
+.form-intro p{font-size:14px;margin:0}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 17px}
+.form-grid .full{grid-column:1/-1}
+.quota{background:#f5f9ff;border:1px solid #dce8f7;border-radius:15px;padding:19px;margin-bottom:24px}
+.quota h3{margin-bottom:13px}
+.quota-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.quota-item{padding:10px 11px;background:white;border:1px solid #e5edf7;border-radius:10px;font-size:11px;color:#5d6e83}
+.quota-item strong{display:block;color:var(--navy);font-size:16px;margin-top:3px}
+.success{text-align:center;padding:42px 15px}
+.success-icon{width:76px;height:76px;border-radius:50%;background:#e7f6ef;color:var(--green);display:grid;place-items:center;font-size:35px;margin:0 auto 20px}
+.success p{margin:10px auto;max-width:480px}
+.footer{background:#f8fafc;border-top:1px solid var(--line);padding:17px 30px;text-align:center;color:#8a97a8;font-size:11px}
+#page2,#page3,#page4{display:none}
+@media(max-width:780px){body{padding:10px}.shell{border-radius:18px}.topbar{padding:15px 19px}.content{padding:30px 20px 35px}.top-tag{font-size:10px}.major-grid,.dosen-grid{grid-template-columns:1fr}.major-card{min-height:auto}.quota-grid{grid-template-columns:repeat(2,1fr)}.login-panel{padding:22px 18px}.section-head{display:block}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}}
+@media(max-width:390px){.top-tag{display:none}.brand-name{font-size:12px}.content{padding-left:15px;padding-right:15px}}
 </style>
 </head>
-
 <body>
-
-<div class="container">
-
-<img src="https://tse4.mm.bing.net/th/id/OIP.mKfRX_gXt030Wq0EELn2QwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="logo">
-
-<div id="countdownBox">
-  <h1>⏳ PORTAL BELUM DIBUKA</h1>
-  <p>Pendaftaran dibuka dalam:</p>
-  <h2 id="countdown"></h2>
+<div class="shell">
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">🎓</div><div class="brand-name">AKUNTANSI UNPAM SERANG<span>PORTAL AKADEMIK • PSDKU SERANG</span></div></div>
+  <div class="top-tag">TAHUN AKADEMIK 2026/2027</div>
+</header>
+<main class="content">
+  <div class="logo-wrap"><img src="https://tse4.mm.bing.net/th/id/OIP.mKfRX_gXt030Wq0EELn2QwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="logo" alt="Logo Universitas Pamulang"></div>
+  <div id="countdownBox">
+    <div class="eyebrow">Program Studi Akuntansi • UNPAM Serang</div>
+    <h1>Portal Peminatan Jurusan</h1>
+    <p>Pendaftaran peminatan akan dibuka dalam:</p>
+    <div id="countdown">Memuat waktu...</div>
+  </div>
+  <section id="login" class="login-panel" style="display:none">
+    <div class="login-heading"><div class="eyebrow">Selamat Datang</div><h2>Masuk Portal Mahasiswa</h2><p>Gunakan nama lengkap dan NIM untuk melanjutkan proses pemilihan peminatan.</p></div>
+    <div class="field"><label for="nama">Nama lengkap</label><input type="text" id="nama" placeholder="Masukkan nama lengkap" autocomplete="name"></div>
+    <div class="field"><label for="nim">Nomor Induk Mahasiswa (NIM)</label><input type="text" id="nim" placeholder="Masukkan NIM" inputmode="numeric"></div>
+    <button class="btn" onclick="login()">Masuk ke Portal <span>→</span></button>
+  </section>
+  <section id="page2">
+    <div class="welcome"><div class="eyebrow" style="text-align:left;color:#b9d4f4">Portal Peminatan KBK</div><h2 id="welcome"></h2><p>Pelajari setiap bidang peminatan dan daftar dosen Kelompok Bidang Keilmuan sebelum mengisi formulir.</p></div>
+    <div class="section-head"><div><h2>Pilihan Bidang Peminatan</h2><p>Kenali fokus pembelajaran pada setiap bidang.</p></div></div>
+    <div class="major-grid">
+      <article class="major-card"><div class="major-icon">📊</div><h3>Akuntansi Keuangan</h3><p>Mempelajari pelaporan dan analisis keuangan, pengelolaan aset, serta pengambilan keputusan keuangan perusahaan.</p></article>
+      <article class="major-card"><div class="major-icon">🧾</div><h3>Perpajakan</h3><p>Berfokus pada administrasi, perhitungan, pelaporan, kepatuhan, dan konsultasi perpajakan.</p></article>
+      <article class="major-card"><div class="major-icon">🔍</div><h3>Audit</h3><p>Mendalami pemeriksaan laporan keuangan, pengendalian internal, prosedur audit, dan penilaian risiko.</p></article>
+    </div>
+    <div class="dosen-box">
+      <h2>Daftar Dosen KBK Akuntansi</h2>
+      <div class="dosen-grid">
+        <section class="dosen-group"><h3>📊 Akuntansi Keuangan</h3><ul>
+          <li>Iroh Rahmawati, S.E., M.Ak.</li><li>Ririn Sari Dewi, S.E., M.Ak., CAP</li><li>Irna Maya Sari, S.E., M.Ak.</li><li>Ingga Maulana A.Md., Ak., S.Ak., M.Ak</li><li>Rismawati, S.E., M.Ak</li><li>Rupianna Tambunan, S.E., M.Ak</li><li>Nistri Kusumawardani, S.E., M.Ak</li><li>Achmad Khusnul Iman, S.E., M.Ak</li><li>Richa Hidayati Chaniago, S.Ak., M.Ak</li><li>Vani Vauliyanti, S.E., M.Ak</li><li>Yayah Syahriyah, M.Ak</li><li>Muchamad Rizky Fauzi, S.E., M.Tr.E</li><li>Arif Wahyu Nur Kholid, S.Ak., M.Ak</li>
+        </ul></section>
+        <section class="dosen-group"><h3>🧾 Perpajakan</h3><ul>
+          <li>Lamsah, S.E., M.M., M.Ak.</li><li>Listia Aulia Indy, S.Ak., M.Ak</li><li>Ayu Septiana Putri, S.Ak., M.Ak</li><li>Erimina Halawa, S.Ak., M.Ak</li><li>Ahmad Syuheri, S.Ak., M.Ak</li><li>Arifatun Nasihah, S.Ak., M.Ak</li><li>Didik Setiawan, S.Ak., M.Ak</li><li>Kahfi Fikrianoor, S.E., M.Sc</li>
+        </ul></section>
+        <section class="dosen-group"><h3>🔍 Audit</h3><ul>
+          <li>Dwi Fitrianingsih, S.E., M.Ak</li><li>Rahadian Amrullah, S.Pd., M.Ak</li><li>Yudha Eka Febrian, S.E., M.Ak</li><li>Shally Khomilah, S.E., M.Ak</li><li>Fadli Nuryasin, S.E., M.Ak</li><li>Indah Kristianti, S.Ak., M.Ak</li><li>Akhmad Nofiata, S.E., M.Ak</li><li>Eko Fujiyono, S.E., M.Ak</li>
+        </ul></section>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <label class="consent"><input type="checkbox" id="setuju"><span>Saya telah membaca dan memahami informasi bidang peminatan serta daftar dosen KBK Akuntansi.</span></label>
+    <button class="btn" onclick="lanjut()">Lanjut ke Formulir <span>→</span></button>
+  </section>
+  <section id="page3">
+    <div class="form-intro"><div class="eyebrow" style="text-align:left">Tahap Pengisian</div><h2>Formulir Peminatan</h2><p>Lengkapi data mahasiswa, nilai mata kuliah prasyarat, dan pilihan peminatan dengan benar.</p></div>
+    <div id="kuota" class="quota"><h3>📊 Informasi Kuota Peminatan</h3><p>Memuat data kuota...</p></div>
+    <div class="form-grid">
+      <div class="field"><label for="formNama">Nama lengkap</label><input type="text" id="formNama" placeholder="Nama lengkap"></div>
+      <div class="field"><label for="formNim">NIM</label><input type="text" id="formNim" placeholder="NIM"></div>
+      <div class="field"><label for="kelas">Kelas</label><input type="text" id="kelas" placeholder="Contoh: 07SAKE001"></div>
+      <div class="field"><label for="hp">Nomor HP / WhatsApp</label><input type="tel" id="hp" placeholder="08xxxxxxxxxx"></div>
+      <div class="field"><label for="ipk">IPK</label><input type="number" id="ipk" placeholder="Contoh: 3.50" min="0" max="4" step="0.01"></div>
+      <div class="field"><label for="regPeminatan">Kelas reguler</label><select id="regPeminatan" onchange="updatePrasyarat()"><option value="">Pilih kelas reguler</option><option value="A">REG A</option><option value="B">REG B</option><option value="C">REG C</option></select></div>
+      <div class="field full"><label for="khs">Link Google Drive KHS (akses publik)</label><input type="url" id="khs" placeholder="https://drive.google.com/..."></div>
+      <div class="field full"><label for="suratPernyataan">Link Google Drive Surat Pernyataan (akses publik)</label><input type="url" id="suratPernyataan" placeholder="https://drive.google.com/..."></div>
+      <div class="field full"><label for="suratKonsentrasi">Surat keterangan konsentrasi (jika mengikuti tes)</label><input type="text" id="suratKonsentrasi" placeholder="Masukkan link atau ketik (-) jika tidak wajib"></div>
+      <div class="field"><label for="akuntansi1">Nilai Akuntansi Keuangan 1</label><select id="akuntansi1"><option value="">Pilih nilai</option><option>A+</option><option>A-</option><option>B+</option><option>B</option><option>C+</option><option>C</option></select></div>
+      <div class="field"><label for="perpajakan1">Nilai Perpajakan 1</label><select id="perpajakan1"><option value="">Pilih nilai</option><option>A+</option><option>A-</option><option>B+</option><option>B</option><option>C+</option><option>C</option></select></div>
+      <div class="field"><label for="auditing1">Nilai Auditing 1</label><select id="auditing1"><option value="">Pilih nilai</option><option>A+</option><option>A-</option><option>B+</option><option>B</option><option>C+</option><option>C</option></select></div>
+      <div class="field"><label for="prasyarat">Pilihan peminatan</label><select id="prasyarat" onchange="validasiPrasyarat()"><option value="">Pilih kelas reguler terlebih dahulu</option></select></div>
+      <div class="field full"><label for="alasanmemilih">Alasan memilih peminatan</label><textarea id="alasanmemilih" placeholder="Tuliskan alasan dan minat Anda memilih bidang peminatan tersebut..."></textarea></div>
+    </div>
+    <div class="divider"></div>
+    <button id="submitBtn" class="btn" onclick="kirimData()">Kirim Data Peminatan <span>→</span></button>
+  </section>
+  <section id="page4" class="success">
+    <div class="success-icon">✓</div><div class="eyebrow">Pengiriman Berhasil</div><h1>Terima Kasih!</h1><p>Data peminatan Anda telah berhasil dikirim. Semoga proses akademik Anda berjalan lancar.</p><h2 style="margin-top:22px">Sukses untuk langkah berikutnya.</h2>
+  </section>
+</main>
+<footer class="footer">Program Studi Akuntansi • Universitas Pamulang PSDKU Serang</footer>
 </div>
-
-<div id="login" style="display:none;">
-
-<h1>PORTAL PEMINATAN JURUSAN</h1>
-
-<h2>PROGRAM STUDI AKUNTANSI UNPAM SERANG</h2>
-
-<p>
-Selamat Datang Mahasiswa Program Studi Akuntansi.
-</p>
-
-<p>
-Silakan login untuk melanjutkan proses pemilihan peminatan.
-</p>
-
-<hr>
-
-<div class="login-title">
-Login Mahasiswa
-</div>
-
-<input
-type="text"
-id="nama"
-placeholder="Masukkan Nama Lengkap">
-
-<input
-type="text"
-id="nim"
-placeholder="Masukkan NIM">
-
-<button onclick="login()">
-LOGIN
-</button>
-
-</div>
-
-<div id="page2" style="display:none;">
-
-<h2 id="welcome"></h2>
-
-<p>
-Silakan membaca seluruh informasi peminatan berikut sebelum melanjutkan.
-</p>
-
-<div class="card">
-<h3>📊 Akuntansi Keuangan</h3>
-<p>
-Fokus pada laporan keuangan, analisis keuangan, dan manajemen keuangan perusahaan.
-</p>
-</div>
-
-<div class="card">
-<h3>🧾 Perpajakan</h3>
-<p>
-Fokus pada perhitungan, pelaporan, dan konsultasi perpajakan.
-</p>
-</div>
-
-<div class="card">
-<h3>🔍 Audit</h3>
-<p>
-Fokus pada pemeriksaan laporan keuangan dan pengendalian internal.
-</p>
-</div>
-
-<div class="dosen-box">
-
-<h2>📚 Daftar Dosen KBK Akuntansi</h2>
-
-<h3>📊 Akuntansi Keuangan</h3>
-<ul>
-<li> Iroh Rahmawati, S.E., M.Ak.</li>
-<li> Ririn Sari Dewi, S.E., M.Ak., CAP</li>
-<li> Irna Maya Sari, S.E., M.Ak.</li>
-<li> Ingga Maulana A.Md., Ak., S.Ak., M.Ak</li>
-<li> Rismawati, S.E., M.Ak</li>
-<li> Rupianna Tambunan, S.E., M.Ak</li>
-<li> Nistri Kusumawardani, S.E., M.Ak</li>
-<li> Achmad Khusnul Iman, S.E., M.Ak</li>
-<li> Richa Hidayati Chaniago, S.Ak., M.Ak</li>
-<li> Vani Vauliyanti, S.E., M.Ak</li>
-<li> Yayah Syahriyah, M.Ak</li>
-<li> Muchamad Rizky Fauzi, S.E., M.Tr.E</li>
-<li> Arif Wahyu Nur Kholid, S.Ak., M.Ak</li>
-</ul>
-
-<h3>🧾 Perpajakan</h3>
-<ul>
-<li> Lamsah, S.E., M.M., M.Ak.</li>
-<li> Listia Aulia Indy, S.Ak., M.Ak</li>
-<li> Ayu Septiana Putri, S.Ak., M.Ak</li>
-<li> Erimina Halawa, S.Ak., M.Ak</li>
-<li> Ahmad Syuheri, S.Ak., M.Ak</li>
-<li> Arifatun Nasihah, S.Ak., M.Ak</li>
-<li> Didik Setiawan, S.Ak., M.Ak</li>
-<li> Kahfi Fikrianoor, S.E., M.Sc</li>
-</ul>
-
-<h3>🔍 Audit</h3>
-<ul>
-<li> Dwi Fitrianingsih, S.E., M.Ak</li>
-<li> Rahadian Amrullah, S.Pd., M.Ak</li>
-<li> Yudha Eka Febrian, S.E., M.Ak</li>
-<li> Shally Khomilah, S.E., M.Ak</li>
-<li> Fadli Nuryasin, S.E., M.Ak</li>
-<li> Indah Kristianti, S.Ak., M.Ak</li>
-<li> Akhmad Nofiata, S.E., M.Ak</li>
-<li> Eko Fujiyono, S.E., M.Ak</li>
-</ul>
-
-</div>
-
-<hr>
-
-<div class="checkbox">
-<input type="checkbox" id="setuju">
-Saya telah membaca seluruh informasi peminatan
-</div>
-
-<button class="next-btn" onclick="lanjut()">
-LANJUT KE FORM
-</button>
-<div id="formContainer"></div>
-<div id="hasil"></div>
-
-</div> <!-- tutup page2/dashboard -->
-
-<div id="page3" style="display:none;">
-
-<h2>Form Peminatan</h2>
-
-<div id="kuota" style="
-background:#f5f9ff;
-padding:20px;
-border-radius:12px;
-margin-bottom:20px;
-border-left:5px solid #1565c0;
-"></div>
-
-<input type="text" id="formNama" placeholder="Nama Lengkap">
-<input type="text" id="formNim" placeholder="NIM">
-<input type="text" id="kelas" placeholder="Kelas">
-<input type="text" id="hp" placeholder="No HP">
-<input type="number" id="ipk" placeholder="IPK">
-<input type="text" id="khs" placeholder="Link Drive KHS (akses publik)">
-<input type="text" id="suratPernyataan" placeholder="Link Drive Surat Pernyataan (akses publik)">
-<input type="text" id="suratKonsentrasi" placeholder="Isi link surat keterangan konsentrasi (jika mengikuti tes) atau ketik (-) jika tidak wajib">
-
-<label>REGULER</label>
-<select id="regPeminatan" onchange="updatePrasyarat()">
-  <option value="">Pilih REG</option>
-  <option value="A">REG A</option>
-  <option value="B">REG B</option>
-  <option value="C">REG C</option>
-</select>
-
-<label>Akuntansi Keuangan 1</label>
-<select id="akuntansi1">
-  <option value="">Pilih Nilai</option>
-  <option value="A+">A+</option>
-  <option value="A-">A-</option>
-  <option value="B+">B+</option>
-  <option value="B">B</option>
-  <option value="C+">C+</option>
-  <option value="C">C</option>
-</select>
-
-<label>Perpajakan 1</label>
-<select id="perpajakan1">
-  <option value="">Pilih Nilai</option>
-  <option value="A+">A+</option>
-  <option value="A-">A-</option>
-  <option value="B+">B+</option>
-  <option value="B">B</option>
-  <option value="C+">C+</option>
-  <option value="C">C</option>
-</select>
-
-<label>Auditing 1</label>
-<select id="auditing1">
-  <option value="">Pilih Nilai</option>
-  <option value="A+">A+</option>
-  <option value="A-">A-</option>
-  <option value="B+">B+</option>
-  <option value="B">B</option>
-  <option value="C+">C+</option>
-  <option value="C">C</option>
-</select>
-
-<label>Prasyarat</label>
-<select id="prasyarat" onchange="validasiPrasyarat()">
-  <option value="">Pilih Prasyarat</option>
-</select>
-
-<label>Alasan Memilih Peminatan</label>
-<textarea id="alasanmemilih" placeholder="Tulis alasan memilih peminatan..." rows="4"></textarea>
-
-<br><br>
-
-<button id="submitBtn" onclick="this.disabled=true;kirimData()">
-KIRIM DATA
-</button>
-
-</div>
-
-<div id="page4" style="display:none;">
-
-<h1>🎉 TERIMA KASIH</h1>
-
-<p>Data peminatan Anda telah berhasil dikirim.</p>
-
-<h2>GOOD LUCK 🚀</h2>
-
-</div>
-
-</div>
-
 <script>
-
+const API_URL = "https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec";
+function showPage(id){["login","page2","page3","page4"].forEach(page=>document.getElementById(page).style.display=page===id?"block":"none");}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));}
 function login(){
-
-let nama=document.getElementById("nama").value.trim();
-let nim=document.getElementById("nim").value.trim();
-
-if(nama == "" || nim == ""){
-alert("Nama dan NIM wajib diisi");
-return;
+  const nama=document.getElementById("nama").value.trim();
+  const nim=document.getElementById("nim").value.trim();
+  if(!nama||!nim){alert("Nama dan NIM wajib diisi.");return;}
+  if(!/^\d+$/.test(nim)){alert("NIM harus berupa angka.");return;}
+  showPage("page2");
+  document.getElementById("welcome").textContent="Selamat datang, "+nama;
+  window.namaMahasiswa=nama;window.nimMahasiswa=nim;
 }
-
-if(isNaN(nim)){
-alert("NIM harus berupa angka");
-return;
-}
-
-document.getElementById("login").style.display="none";
-document.getElementById("page2").style.display="block";
-
-document.getElementById("welcome").innerHTML=
-`
-👋 Selamat Datang
-
-<br><br>
-
-<b>${nama}</b>
-
-<br>
-
-NIM : ${nim}
-
-<br><br>
-
-Portal Peminatan KBK Akuntansi
-`;
-}
-
 function lanjut(){
-
-if(!document.getElementById("setuju").checked){
-alert("Silakan centang konfirmasi terlebih dahulu");
-return;
+  if(!document.getElementById("setuju").checked){alert("Silakan centang konfirmasi bahwa Anda telah membaca informasi.");return;}
+  document.getElementById("formNama").value=window.namaMahasiswa||document.getElementById("nama").value.trim();
+  document.getElementById("formNim").value=window.nimMahasiswa||document.getElementById("nim").value.trim();
+  showPage("page3");loadKuota();
 }
-
-document.getElementById("login").style.display="none";
-document.getElementById("page2").style.display="none";
-document.getElementById("page3").style.display="block";
-
-document.getElementById("formNama").value =
-document.getElementById("nama").value;
-
-document.getElementById("formNim").value =
-document.getElementById("nim").value;
-
-loadKuota();
-
-fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec")
-.then(res => res.json())
-.then(data => {
-   console.log(data);
-})
-.catch(err => console.log(err));
-
-}
-
 function updatePrasyarat(){
-
-let reg = document.getElementById("regPeminatan").value;
-let prasyarat = document.getElementById("prasyarat");
-
-prasyarat.innerHTML = '<option value="">Pilih Prasyarat</option>';
-
-if(reg == "A"){
-  prasyarat.innerHTML += `
-    <option value="REG A - Keuangan">REG A - Keuangan</option>
-    <option value="REG A - Pajak">REG A - Pajak</option>
-    <option value="REG A - Audit">REG A - Audit</option>
-  `;
+  const reg=document.getElementById("regPeminatan").value;
+  const el=document.getElementById("prasyarat");
+  el.innerHTML='<option value="">Pilih peminatan</option>';
+  const options={A:["REG A - Keuangan","REG A - Pajak","REG A - Audit"],B:["REG B - Audit","REG B - Pajak"],C:["REG C - Keuangan","REG C - Audit","REG C - Pajak"]};
+  (options[reg]||[]).forEach(value=>{const opt=document.createElement("option");opt.value=value;opt.textContent=value;el.appendChild(opt);});
 }
-
-if(reg == "B"){
-  prasyarat.innerHTML += `
-    <option value="REG B - Audit">REG B - Audit</option>
-    <option value="REG B - Pajak">REG B - Pajak</option>
-  `;
-}
-
-if(reg == "C"){
-  prasyarat.innerHTML += `
-    <option value="REG C - Keuangan">REG C - Keuangan</option>
-    <option value="REG C - Audit">REG C - Audit</option>
-    <option value="REG C - Pajak">REG C - Pajak</option>
-  `;
-}
-
-}
-
 function validasiPrasyarat(){
-
-  let nilaiAkuntansi = document.getElementById("akuntansi1").value;
-  let nilaiPajak = document.getElementById("perpajakan1").value;
-  let nilaiAudit = document.getElementById("auditing1").value;
-  let prasyarat = document.getElementById("prasyarat").value;
-
-  // VALIDASI KEUANGAN
-  if(
-    (nilaiAkuntansi == "B" || nilaiAkuntansi == "C+" || nilaiAkuntansi == "C")
-    &&
-    (prasyarat == "REG A - Keuangan" || prasyarat == "REG C - Keuangan")
-  ){
-    alert("Nilai mata kuliah tidak memenuhi prasyarat peminatan Keuangan");
-    document.getElementById("prasyarat").value = "";
-  }
-
-  // VALIDASI PAJAK
-  if(
-    (nilaiPajak == "B" || nilaiPajak == "C+" || nilaiPajak == "C")
-    &&
-    (
-      prasyarat == "REG A - Pajak" ||
-      prasyarat == "REG B - Pajak" ||
-      prasyarat == "REG C - Pajak"
-    )
-  ){
-    alert("Nilai mata kuliah tidak memenuhi prasyarat peminatan Pajak");
-    document.getElementById("prasyarat").value = "";
-  }
-
-  // VALIDASI AUDIT
-  if(
-    (nilaiAudit == "B" || nilaiAudit == "C+" || nilaiAudit == "C")
-    &&
-    (
-      prasyarat == "REG A - Audit" ||
-      prasyarat == "REG B - Audit" ||
-      prasyarat == "REG C - Audit"
-    )
-  ){
-    alert("Nilai mata kuliah tidak memenuhi prasyarat peminatan Audit");
-    document.getElementById("prasyarat").value = "";
-  }
-
+  const nilaiAkuntansi=document.getElementById("akuntansi1").value;
+  const nilaiPajak=document.getElementById("perpajakan1").value;
+  const nilaiAudit=document.getElementById("auditing1").value;
+  const prasyarat=document.getElementById("prasyarat").value;
+  const nilaiTidakMemenuhi=["B","C+","C"];
+  const aturan=[
+    {nilai:nilaiAkuntansi,opsi:["REG A - Keuangan","REG C - Keuangan"],pesan:"Nilai Akuntansi Keuangan 1 tidak memenuhi prasyarat peminatan Keuangan."},
+    {nilai:nilaiPajak,opsi:["REG A - Pajak","REG B - Pajak","REG C - Pajak"],pesan:"Nilai Perpajakan 1 tidak memenuhi prasyarat peminatan Pajak."},
+    {nilai:nilaiAudit,opsi:["REG A - Audit","REG B - Audit","REG C - Audit"],pesan:"Nilai Auditing 1 tidak memenuhi prasyarat peminatan Audit."}
+  ];
+  const tidakMemenuhi=aturan.find(item=>item.opsi.includes(prasyarat)&&nilaiTidakMemenuhi.includes(item.nilai));
+  if(tidakMemenuhi){alert(tidakMemenuhi.pesan);document.getElementById("prasyarat").value="";}
 }
-
-function loadKuota(){
-fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec")
-.then(res => res.json())
-.then(data => {
-
-let total = {
-  "REG A - Keuangan":0,
-  "REG A - Pajak":0,
-  "REG A - Audit":0,
-  "REG B - Audit":0,
-  "REG B - Pajak":0,
-  "REG C - Keuangan":0,
-  "REG C - Audit":0,
-  "REG C - Pajak":0
-};
-
-let kombinasiUnik = [];
-
-data.forEach(item => {
-  let key = item.nim.toString().trim() + "|" + item.prasyarat;
-
-  if(
-    total[item.prasyarat] != undefined &&
-    !kombinasiUnik.includes(key)
-  ){
-    total[item.prasyarat]++;
-    kombinasiUnik.push(key);
-  }
-});
-
-document.getElementById("kuota").innerHTML = `
-<h3>📊 Kuota Peminatan</h3>
-<p>REG A - Keuangan : ${total["REG A - Keuangan"]}/56</p>
-<p>REG A - Pajak : ${total["REG A - Pajak"]}/56</p>
-<p>REG A - Audit : ${total["REG A - Audit"]}/55</p>
-<p>REG B - Audit : ${total["REG B - Audit"]}/25</p>
-<p>REG B - Pajak : ${total["REG B - Pajak"]}/25</p>
-<p>REG C - Keuangan : ${total["REG C - Keuangan"]}/50</p>
-<p>REG C - Audit : ${total["REG C - Audit"]}/25</p>
-<p>REG C - Pajak : ${total["REG C - Pajak"]}/52</p>
-`;
-
-});
+const batas={"REG A - Keuangan":56,"REG A - Pajak":56,"REG A - Audit":55,"REG B - Audit":25,"REG B - Pajak":25,"REG C - Keuangan":50,"REG C - Audit":25,"REG C - Pajak":52};
+async function ambilData(){
+  const response=await fetch(API_URL);
+  if(!response.ok)throw new Error("Server data tidak merespons.");
+  return response.json();
 }
-function kirimData(){
-
-let btn = document.getElementById("submitBtn");
-
-// matikan tombol
-btn.disabled = true;
-btn.innerHTML = "⏳ Mengirim...";
-btn.style.opacity = "0.7";
-btn.style.cursor = "not-allowed";
-
-let data = {
-  timestamp: new Date().toLocaleString("id-ID"),
-  nama: document.getElementById("formNama").value,
-  nim: document.getElementById("formNim").value,
-  kelas: document.getElementById("kelas").value,
-  hp: document.getElementById("hp").value,
-  ipk: document.getElementById("ipk").value,
-  khs: document.getElementById("khs").value,
-  suratPernyataan: document.getElementById("suratPernyataan").value,
-  suratKonsentrasi: document.getElementById("suratKonsentrasi").value,
-  regPeminatan: document.getElementById("regPeminatan").value,
-  perpajakan1: document.getElementById("perpajakan1").value,
-  akuntansi1: document.getElementById("akuntansi1").value,
-  auditing1: document.getElementById("auditing1").value,
-  prasyarat: document.getElementById("prasyarat").value,
-  alasanmemilih: document.getElementById("alasanmemilih").value
-};
-
-if(!data.prasyarat){
-  alert("Pilih peminatan dulu");
-  return;
-}
-
-let batas = {
-  "REG A - Keuangan":56,
-  "REG A - Pajak":56,
-  "REG A - Audit":55,
-  "REG B - Audit":25,
-  "REG B - Pajak":25,
-  "REG C - Keuangan":50,
-  "REG C - Audit":25,
-  "REG C - Pajak":52
-};
-
-fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec")
-.then(res => res.json())
-.then(allData => {
-
-  let cekNim = allData.find(item => item.nim && item.nim == data.nim);
-
-  if(cekNim){
-  alert("NIM sudah pernah submit");
-
-  btn.disabled = false;
-  btn.innerHTML = "KIRIM DATA";
-  btn.style.opacity = "1";
-  btn.style.cursor = "pointer";
-  return;
-}
-
-  let uniqueNim = [];
-
-let jumlah = allData.filter(item => {
-  let key = item.nim.toString().trim() + "|" + item.prasyarat;
-
-  if (
-    item.prasyarat == data.prasyarat &&
-    !uniqueNim.includes(key)
-  ) {
-    uniqueNim.push(key);
-    return true;
-  }
-
-  return false;
-}).length;
-
-  if(jumlah >= batas[data.prasyarat]){
-  alert("Kuota penuh");
-
-  btn.disabled = false;
-  btn.innerHTML = "KIRIM DATA";
-  btn.style.opacity = "1";
-  btn.style.cursor = "pointer";
-  return;
-}
-
-  return fetch("https://script.google.com/macros/s/AKfycbx7Bv6Em67fepU7_6b4GlHPxmauPQizFjz6YdAeWZMa91liXYQgCM57bvdhE0KlhnKW/exec", {
-    method: "POST",
-    body: JSON.stringify(data)
+function hitungKuota(data){
+  const total=Object.fromEntries(Object.keys(batas).map(key=>[key,0]));
+  const unik=new Set();
+  data.forEach(item=>{
+    const nim=String(item.nim||"").trim();
+    const key=nim+"|"+item.prasyarat;
+    if(nim&&total[item.prasyarat]!==undefined&&!unik.has(key)){total[item.prasyarat]++;unik.add(key);}
   });
-
-})
-.then(res => res.json())
-.then(result => {
-
-  alert("Data berhasil dikirim!");
-  loadKuota();
-
-  document.getElementById("page3").style.display = "none";
-  document.getElementById("page4").style.display = "block";
-
-})
-.catch(err => {
-  console.error(err);
-
-  btn.disabled = false;
-  btn.innerHTML = "KIRIM DATA";
-  btn.style.opacity = "1";
-  btn.style.cursor = "pointer";
-});
+  return total;
 }
-
-const bukaPortal = new Date("2026-06-25T12:00:00+07:00").getTime();
-const tutupPortal = new Date("2027-06-26T22:00:00+07:00").getTime();
-
-const timer = setInterval(function(){
-
-let sekarang = new Date().getTime();
-
-if(sekarang < bukaPortal){
-
-let selisih = bukaPortal - sekarang;
-
-let hari = Math.floor(selisih / (1000*60*60*24));
-let jam = Math.floor((selisih % (1000*60*60*24)) / (1000*60*60));
-let menit = Math.floor((selisih % (1000*60*60)) / (1000*60));
-let detik = Math.floor((selisih % (1000*60)) / 1000);
-
-document.getElementById("countdown").innerHTML =
-`
-${hari} Hari <br>
-${jam} Jam <br>
-${menit} Menit <br>
-${detik} Detik
-`;
-
+async function loadKuota(){
+  const box=document.getElementById("kuota");
+  try{
+    const data=await ambilData();
+    const total=hitungKuota(data);
+    box.innerHTML='<h3>📊 Informasi Kuota Peminatan</h3><div class="quota-grid">'+Object.keys(batas).map(key=>'<div class="quota-item">'+escapeHtml(key)+'<strong>'+total[key]+' / '+batas[key]+'</strong></div>').join("")+'</div>';
+  }catch(err){
+    console.error(err);
+    box.innerHTML="<h3>Informasi Kuota Peminatan</h3><p>Kuota belum dapat dimuat. Silakan muat ulang halaman atau coba kembali.</p>";
+  }
 }
-
-else if(sekarang >= bukaPortal && sekarang <= tutupPortal){
-
-document.getElementById("countdownBox").style.display = "none";
-
-if(
-document.getElementById("page2").style.display === "none" &&
-document.getElementById("page3").style.display === "none" &&
-document.getElementById("page4").style.display === "none"
-){
-document.getElementById("login").style.display = "block";
+function resetSubmitButton(btn){btn.disabled=false;btn.textContent="Kirim Data Peminatan →";}
+async function kirimData(){
+  const btn=document.getElementById("submitBtn");
+  if(btn.disabled)return;
+  const data={
+    timestamp:new Date().toLocaleString("id-ID"),
+    nama:document.getElementById("formNama").value.trim(),
+    nim:document.getElementById("formNim").value.trim(),
+    kelas:document.getElementById("kelas").value.trim(),
+    hp:document.getElementById("hp").value.trim(),
+    ipk:document.getElementById("ipk").value,
+    khs:document.getElementById("khs").value.trim(),
+    suratPernyataan:document.getElementById("suratPernyataan").value.trim(),
+    suratKonsentrasi:document.getElementById("suratKonsentrasi").value.trim(),
+    regPeminatan:document.getElementById("regPeminatan").value,
+    perpajakan1:document.getElementById("perpajakan1").value,
+    akuntansi1:document.getElementById("akuntansi1").value,
+    auditing1:document.getElementById("auditing1").value,
+    prasyarat:document.getElementById("prasyarat").value,
+    alasanmemilih:document.getElementById("alasanmemilih").value.trim()
+  };
+  if(!data.nama||!data.nim||!data.kelas||!data.hp||!data.ipk||!data.regPeminatan||!data.akuntansi1||!data.perpajakan1||!data.auditing1||!data.prasyarat||!data.alasanmemilih){alert("Mohon lengkapi seluruh data wajib sebelum mengirim.");return;}
+  if(Number(data.ipk)<0||Number(data.ipk)>4){alert("IPK harus berada pada rentang 0 sampai 4.");return;}
+  if(!data.khs||!data.suratPernyataan){alert("Link KHS dan Surat Pernyataan wajib diisi.");return;}
+  btn.disabled=true;btn.textContent="Mengirim data...";
+  try{
+    const allData=await ambilData();
+    if(allData.some(item=>item.nim&&String(item.nim).trim()===data.nim))throw new Error("NIM ini sudah pernah mengirim data peminatan.");
+    const jumlah=hitungKuota(allData)[data.prasyarat]||0;
+    if(jumlah>=batas[data.prasyarat])throw new Error("Kuota untuk "+data.prasyarat+" sudah penuh.");
+    const response=await fetch(API_URL,{method:"POST",body:JSON.stringify(data)});
+    if(!response.ok)throw new Error("Pengiriman data gagal. Silakan coba kembali.");
+    const result=await response.json();
+    if(result&&result.error)throw new Error(result.error);
+    alert("Data berhasil dikirim!");
+    showPage("page4");
+  }catch(err){
+    console.error(err);
+    alert(err.message||"Terjadi kendala saat mengirim data. Silakan coba kembali.");
+    resetSubmitButton(btn);
+  }
 }
-
+const bukaPortal=new Date("2026-06-25T12:00:00+07:00").getTime();
+const tutupPortal=new Date("2027-06-26T22:00:00+07:00").getTime();
+function updateCountdown(){
+  const now=Date.now();
+  if(now<bukaPortal){
+    const selisih=bukaPortal-now;
+    const hari=Math.floor(selisih/86400000);
+    const jam=Math.floor((selisih%86400000)/3600000);
+    const menit=Math.floor((selisih%3600000)/60000);
+    const detik=Math.floor((selisih%60000)/1000);
+    document.getElementById("countdown").innerHTML=hari+" Hari<br>"+jam+" Jam • "+menit+" Menit • "+detik+" Detik";
+  }else if(now<=tutupPortal){
+    document.getElementById("countdownBox").style.display="none";
+    if(document.getElementById("login").style.display==="none"&&document.getElementById("page2").style.display==="none"&&document.getElementById("page3").style.display==="none"&&document.getElementById("page4").style.display==="none")showPage("login");
+  }else{
+    clearInterval(countdownTimer);
+    document.querySelector(".content").innerHTML='<div class="success"><div class="success-icon">🔒</div><div class="eyebrow">Pendaftaran Berakhir</div><h1>Portal Sudah Ditutup</h1><p>Waktu pengisian peminatan telah berakhir. Terima kasih atas perhatian Anda.</p></div>';
+  }
 }
-
-else{
-
-clearInterval(timer);
-
-document.body.innerHTML = `
-<div class="container">
-<h1>🔒 PORTAL SUDAH DITUTUP</h1>
-<p>Waktu pengisian peminatan telah berakhir.</p>
-</div>
-`;
-
-}
-
-},1000);
+const countdownTimer=setInterval(updateCountdown,1000);
+updateCountdown();
 </script>
-
 </body>
 </html>
