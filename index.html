@@ -59,6 +59,10 @@ textarea{resize:vertical;min-height:110px}
 .major-card p{font-size:13px;margin:0}
 .dosen-box{margin-top:28px;padding:25px;border:1px solid var(--line);border-radius:18px;background:#f9fbfe}
 .dosen-box>h2{margin-bottom:18px}
+.org-chart{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;overflow:hidden}
+.org-chart img{display:block;width:100%;height:auto;max-height:900px;object-fit:contain;border-radius:8px}
+.org-chart figcaption{text-align:center;color:var(--muted);font-size:12px;padding:12px 6px 2px}
+
 .dosen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .dosen-group{background:white;border:1px solid var(--line);padding:17px;border-radius:13px}
 .dosen-group h3{font-size:14px;margin-bottom:10px}
@@ -115,7 +119,17 @@ textarea{resize:vertical;min-height:110px}
       <article class="major-card"><div class="major-icon">🧾</div><h3>Perpajakan</h3><p>Berfokus pada administrasi, perhitungan, pelaporan, kepatuhan, dan konsultasi perpajakan.</p></article>
       <article class="major-card"><div class="major-icon">🔍</div><h3>Audit</h3><p>Mendalami pemeriksaan laporan keuangan, pengendalian internal, prosedur audit, dan penilaian risiko.</p></article>
     </div>
-    <div class="dosen-box">
+    <section class="dosen-box">
+      <div class="eyebrow" style="text-align:left">Profil Program Studi</div>
+      <h2>Struktur Organisasi Prodi Akuntansi</h2>
+      <p>Berikut struktur organisasi Program Studi Akuntansi Universitas Pamulang PSDKU Serang.</p>
+      <figure class="org-chart">
+        <img src="https://raw.githubusercontent.com/webpageds/PEMINATAN-JURUSAN/main/Struktur%20Organisasi%20Prodi%20Akuntansi.jpg" alt="Struktur Organisasi Program Studi Akuntansi" loading="lazy">
+        <figcaption>Struktur Organisasi Prodi Akuntansi • UNPAM PSDKU Serang</figcaption>
+      </figure>
+    </section>
+    <section class="dosen-box">
+      <div class="eyebrow" style="text-align:left">Kelompok Bidang Keilmuan</div>
       <h2>Daftar Dosen KBK Akuntansi</h2>
       <div class="dosen-grid">
         <section class="dosen-group"><h3>📊 Akuntansi Keuangan</h3><ul>
@@ -128,7 +142,7 @@ textarea{resize:vertical;min-height:110px}
           <li>Dwi Fitrianingsih, S.E., M.Ak</li><li>Rahadian Amrullah, S.Pd., M.Ak</li><li>Yudha Eka Febrian, S.E., M.Ak</li><li>Shally Khomilah, S.E., M.Ak</li><li>Fadli Nuryasin, S.E., M.Ak</li><li>Indah Kristianti, S.Ak., M.Ak</li><li>Akhmad Nofiata, S.E., M.Ak</li><li>Eko Fujiyono, S.E., M.Ak</li>
         </ul></section>
       </div>
-    </div>
+    </section>
     <div class="divider"></div>
     <label class="consent"><input type="checkbox" id="setuju"><span>Saya telah membaca dan memahami informasi bidang peminatan serta daftar dosen KBK Akuntansi.</span></label>
     <button class="btn" type="button" onclick="lanjut()">Lanjut ke Formulir</button>
