@@ -291,7 +291,12 @@ function updateCountdown(){
     document.getElementById("countdown").innerHTML=hari+" Hari<br>"+jam+" Jam • "+menit+" Menit • "+detik+" Detik";
   }else if(now<=tutupPortal){
     document.getElementById("countdownBox").style.display="none";
-    showPage("login");
+    // Tampilkan login hanya sekali saat portal pertama kali dibuka.
+    // Jangan panggil showPage("login") setiap detik karena akan me-reset halaman mahasiswa.
+    if(!window.portalScreenInitialized){
+      showPage("login");
+      window.portalScreenInitialized=true;
+    }
   }else{
     clearInterval(countdownTimer);
     document.getElementById("countdownBox").style.display="none";
