@@ -283,9 +283,14 @@ function updateCountdown(){
     document.getElementById("countdown").innerHTML=hari+" Hari<br>"+jam+" Jam • "+menit+" Menit • "+detik+" Detik";
   }else if(now<=tutupPortal){
     document.getElementById("countdownBox").style.display="none";
-    if(document.getElementById("login").style.display==="none"&&document.getElementById("page2").style.display==="none"&&document.getElementById("page3").style.display==="none"&&document.getElementById("page4").style.display==="none")showPage("login");
+    showPage("login");
   }else{
     clearInterval(countdownTimer);
+    document.getElementById("countdownBox").style.display="none";
+    document.getElementById("login").style.display="none";
+    document.getElementById("page2").style.display="none";
+    document.getElementById("page3").style.display="none";
+    document.getElementById("page4").style.display="none";
     document.querySelector(".content").innerHTML='<div class="success"><div class="success-icon">🔒</div><div class="eyebrow">Pendaftaran Berakhir</div><h1>Portal Sudah Ditutup</h1><p>Waktu pengisian peminatan telah berakhir. Terima kasih atas perhatian Anda.</p></div>';
   }
 }
