@@ -254,7 +254,6 @@ async function kirimData(){
     hp:document.getElementById("hp").value.trim(),
     ipk:document.getElementById("ipk").value,
     khs:document.getElementById("khs").value.trim(),
-    suratPernyataan:document.getElementById("suratPernyataan").value.trim(),
     regPeminatan:document.getElementById("regPeminatan").value,
     perpajakan1:document.getElementById("perpajakan1").value,
     akuntansi1:document.getElementById("akuntansi1").value,
@@ -271,8 +270,9 @@ async function kirimData(){
     alert("IPK harus berada pada rentang 0 sampai 4.");
     return;
   }
-  if(!data.khs||!data.suratPernyataan){
-    alert("Link KHS dan Surat Pernyataan wajib diisi.");
+  if(!data.khs){
+    alert("Link Google Drive KHS wajib diisi.");
+    document.getElementById("khs").focus();
     return;
   }
 
