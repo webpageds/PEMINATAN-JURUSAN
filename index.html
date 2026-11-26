@@ -47,6 +47,10 @@ textarea{resize:vertical;min-height:110px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border:0;border-radius:11px;background:var(--blue);color:white;font-size:14px;font-weight:800;transition:.2s;width:100%;box-shadow:0 7px 16px rgba(31,95,174,.18)}
 .btn:hover{background:var(--navy);transform:translateY(-1px)}
 .btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn.is-loading{cursor:wait;opacity:.82;pointer-events:none}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;display:inline-block;vertical-align:middle;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 .welcome{background:linear-gradient(120deg,var(--navy),#1d5797);border-radius:18px;padding:25px;color:white;margin-bottom:28px}
 .welcome h2{color:white;margin-bottom:8px}
 .welcome p{color:#d7e5f5;font-size:14px;margin-bottom:0}
@@ -231,10 +235,17 @@ async function loadKuota(){
     box.innerHTML="<h3>Informasi Kuota Peminatan</h3><p>Kuota belum dapat dimuat. Silakan muat ulang halaman atau coba kembali.</p>";
   }
 }
-function resetSubmitButton(btn){btn.disabled=false;btn.textContent="Kirim Data Peminatan";}
+function resetSubmitButton(btn){
+  btn.disabled=false;
+  btn.classList.remove("is-loading");
+  btn.innerHTML="Kirim Data Peminatan";
+  btn.removeAttribute("aria-busy");
+}
+let isSubmitting=false;
 async function kirimData(){
   const btn=document.getElementById("submitBtn");
-  if(btn.disabled)return;
+  if(isSubmitting||btn.disabled)return;
+
   const data={
     timestamp:new Date().toLocaleString("id-ID"),
     nama:document.getElementById("formNama").value.trim(),
@@ -244,7 +255,6 @@ async function kirimData(){
     ipk:document.getElementById("ipk").value,
     khs:document.getElementById("khs").value.trim(),
     suratPernyataan:document.getElementById("suratPernyataan").value.trim(),
-    suratKonsentrasi:document.getElementById("suratKonsentrasi").value.trim(),
     regPeminatan:document.getElementById("regPeminatan").value,
     perpajakan1:document.getElementById("perpajakan1").value,
     akuntansi1:document.getElementById("akuntansi1").value,
@@ -252,24 +262,56 @@ async function kirimData(){
     prasyarat:document.getElementById("prasyarat").value,
     alasanmemilih:document.getElementById("alasanmemilih").value.trim()
   };
-  if(!data.nama||!data.nim||!data.kelas||!data.hp||!data.ipk||!data.regPeminatan||!data.akuntansi1||!data.perpajakan1||!data.auditing1||!data.prasyarat||!data.alasanmemilih){alert("Mohon lengkapi seluruh data wajib sebelum mengirim.");return;}
-  if(Number(data.ipk)<0||Number(data.ipk)>4){alert("IPK harus berada pada rentang 0 sampai 4.");return;}
-  if(!data.khs||!data.suratPernyataan){alert("Link KHS dan Surat Pernyataan wajib diisi.");return;}
-  btn.disabled=true;btn.textContent="Mengirim data...";
+
+  if(!data.nama||!data.nim||!data.kelas||!data.hp||!data.ipk||!data.regPeminatan||!data.akuntansi1||!data.perpajakan1||!data.auditing1||!data.prasyarat||!data.alasanmemilih){
+    alert("Mohon lengkapi seluruh data wajib sebelum mengirim.");
+    return;
+  }
+  if(Number(data.ipk)<0||Number(data.ipk)>4){
+    alert("IPK harus berada pada rentang 0 sampai 4.");
+    return;
+  }
+  if(!data.khs||!data.suratPernyataan){
+    alert("Link KHS dan Surat Pernyataan wajib diisi.");
+    return;
+  }
+
+  // Kunci proses sejak awal agar klik berulang tidak mengirim beberapa request.
+  isSubmitting=true;
+  btn.disabled=true;
+  btn.classList.add("is-loading");
+  btn.setAttribute("aria-busy","true");
+  btn.innerHTML='<span class="spinner" aria-hidden="true"></span> Mengirim data, mohon tunggu...';
+
   try{
     const allData=await ambilData();
-    if(allData.some(item=>item.nim&&String(item.nim).trim()===data.nim))throw new Error("NIM ini sudah pernah mengirim data peminatan.");
+    if(!Array.isArray(allData))throw new Error("Data dari server tidak valid. Silakan coba kembali.");
+    if(allData.some(item=>item.nim&&String(item.nim).trim()===data.nim)){
+      throw new Error("NIM ini sudah pernah mengirim data peminatan.");
+    }
     const jumlah=hitungKuota(allData)[data.prasyarat]||0;
     if(jumlah>=batas[data.prasyarat])throw new Error("Kuota untuk "+data.prasyarat+" sudah penuh.");
-    const response=await fetch(API_URL,{method:"POST",body:JSON.stringify(data)});
-    if(!response.ok)throw new Error("Pengiriman data gagal. Silakan coba kembali.");
-    const result=await response.json();
+
+    const response=await fetch(API_URL,{
+      method:"POST",
+      redirect:"follow",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(data)
+    });
+    if(!response.ok)throw new Error("Server gagal menerima data. Silakan coba kembali.");
+    const responseText=await response.text();
+    let result;
+    try{result=JSON.parse(responseText);}catch(parseError){
+      throw new Error("Respons server tidak terbaca. Data belum dapat dipastikan tersimpan.");
+    }
     if(result&&result.error)throw new Error(result.error);
     alert("Data berhasil dikirim!");
     showPage("page4");
   }catch(err){
-    console.error(err);
+    console.error("Gagal mengirim data peminatan:",err);
     alert(err.message||"Terjadi kendala saat mengirim data. Silakan coba kembali.");
+  }finally{
+    isSubmitting=false;
     resetSubmitButton(btn);
   }
 }
